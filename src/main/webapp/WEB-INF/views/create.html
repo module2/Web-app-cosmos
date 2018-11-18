@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new</title>
+</head>
+<body>
+<h1>Create thing:</h1>
+<p>
+    <a href="/">Thing list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-thing}" th:object="${thing}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Skill:</td>
+            <td><input type="text" th:field="*{magicScript}"/></td>
+            <td th:if="${#fields.hasErrors('magicScript')}" th:errors="*{magicScript}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Mana:</td>
+            <td><input type="text" th:field="*{manaNeeded}"/></td>
+            <td th:if="${#fields.hasErrors('manaNeeded')}" th:errors="*{manaNeeded}">Name Error</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Thing"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

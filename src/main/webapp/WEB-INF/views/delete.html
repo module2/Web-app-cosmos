@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<h1>Delete thing:</h1>
+<p>
+    <a href="/">Thing list</a>
+</p>
+<form th:action="@{/delete-thing}" th:object="${thing}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" disabled="disabled"/></td>
+        </tr>
+        <tr>
+            <td>Skill:</td>
+            <td><input type="text" th:field="*{magicScript}" disabled="disabled"/></td>
+        </tr>
+        <tr>
+            <td>Mana:</td>
+            <td><input type="text" th:field="*{manaNeeded}" disabled="disabled"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete Thing"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List thing:</title>
+</head>
+<body>
+<a href="/create-thing">Create new thing</a>
+<h1>Things</h1>
+<!--<form>-->
+    <!--Search by first name:-->
+    <!--<input name="s" type="text"/>-->
+    <!--<input type="submit" value="Search"/>-->
+<!--</form><br/>-->
+<h3 style="margin-left: 100px">Size of values:
+    <a href="/"><input type="button" value="5" name="items"/></a>
+    <a href="/"><input type="button" value="10" name="items"/></a></h3>
+
+<table border="1">
+    <tr>
+        <th>Name:</th>
+        <th>Skill:</th>
+        <th>Mana:</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="t : ${things}">
+        <tr>
+            <td th:text="${t.name}"></td>
+            <td th:text="${t.magicScript}"></td>
+            <td th:text="${t.manaNeeded}"></td>
+            <td><a th:href="@{/edit-thing/__${t.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-thing/__${t.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/'(page=${things.number - 1})}" th:if="${things.hasPrevious()}">Previous</a>
+    <span th:text="${things.number + 1}"></span>/<span th:text="${things.totalPages}"></span>
+    <a th:href="@{'/'(page=${things.number + 1})}" th:if="${things.hasNext()}">Next</a>
+</div>
+</body>
+</html>
